@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import StudentTable from './components/StudentTable';
+import Login from './components/Login';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleLogin = (username, password) => {
+        if (username === 'ayushi' && password === '1020') {
+            setIsAuthenticated(true);
+        } else {
+            alert('Incorrect username or password');
+        }
+    };
+
+    return (
+        <Router>
+            <div className="App">
+                <Navbar isAuthenticated={isAuthenticated} />
+                <Routes>
+                    <Route path="/" element={<Login handleLogin={handleLogin} />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/all-students" element={<StudentTable />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

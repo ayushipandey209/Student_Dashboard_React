@@ -1,0 +1,10 @@
+/* src/components/Dashboard.css */
+.dashboard {
+    margin-left: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard h1 {
+    margin-top: 0;
+}
